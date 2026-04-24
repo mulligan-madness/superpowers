@@ -34,6 +34,7 @@ echo "Skill: $SKILL_NAME"
 echo "Prompt file: $PROMPT_FILE"
 echo "Max turns: $MAX_TURNS"
 echo "Output dir: $OUTPUT_DIR"
+echo "Model: ${CLAUDE_TEST_MODEL:-sonnet}"
 echo ""
 
 # Copy prompt for reference
@@ -48,7 +49,9 @@ echo "Running claude -p with naive prompt..."
 timeout 300 claude -p "$PROMPT" \
     --plugin-dir "$PLUGIN_DIR" \
     --dangerously-skip-permissions \
+    --model "${CLAUDE_TEST_MODEL:-sonnet}" \
     --max-turns "$MAX_TURNS" \
+    --verbose \
     --output-format stream-json \
     > "$LOG_FILE" 2>&1 || true
 
