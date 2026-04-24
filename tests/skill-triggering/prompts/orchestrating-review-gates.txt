@@ -1,0 +1,1 @@
+I finished a documentation package and need a spec review, a quality review, and any regression reruns if fixes for one review affect the other. Can you run the review gates before I accept it?

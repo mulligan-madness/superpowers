@@ -141,6 +141,7 @@ Start a new session in your chosen platform and ask for something that should tr
 - **dispatching-parallel-agents** - Concurrent subagent workflows
 - **requesting-code-review** - Pre-review checklist
 - **receiving-code-review** - Responding to feedback
+- **orchestrating-review-gates** - Separate spec, quality, and regression-risk review gates before acceptance
 - **using-git-worktrees** - Parallel development branches
 - **finishing-a-development-branch** - Merge/PR decision workflow
 - **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)

@@ -34,6 +34,9 @@ echo "Skill: $SKILL_NAME"
 echo "Prompt file: $PROMPT_FILE"
 echo "Max turns: $MAX_TURNS"
 echo "Output dir: $OUTPUT_DIR"
+if [ -n "${CLAUDE_TEST_MODEL:-}" ]; then
+    echo "Model: $CLAUDE_TEST_MODEL"
+fi
 echo ""
 
 # Copy prompt for reference
@@ -45,10 +48,17 @@ cd "$OUTPUT_DIR"
 
 echo "Plugin dir: $PLUGIN_DIR"
 echo "Running claude -p with naive prompt..."
+CLAUDE_ARGS=()
+if [ -n "${CLAUDE_TEST_MODEL:-}" ]; then
+    CLAUDE_ARGS+=(--model "$CLAUDE_TEST_MODEL")
+fi
+
 timeout 300 claude -p "$PROMPT" \
     --plugin-dir "$PLUGIN_DIR" \
     --dangerously-skip-permissions \
+    "${CLAUDE_ARGS[@]}" \
     --max-turns "$MAX_TURNS" \
+    --verbose \
     --output-format stream-json \
     > "$LOG_FILE" 2>&1 || true
 
